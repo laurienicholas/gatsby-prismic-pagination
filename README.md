@@ -38,9 +38,9 @@ exports.createPages = async ({ graphql, actions }) => {
 The plugin will keep querying prismic until it has all your posts. This saves you writing your own loop for prismic's 20 post limit per query:
 
 ```js
-const { allPosts } = await prismicPagination(...yourArgsLikeBefore)
+const { allPosts } = await prismicPagination(...yourArgsLikeBefore) // Still creates index pages
 
-// We we have all posts in a single array rather than in prismic paged responses
+// We now have all posts in a single array rather than in prismic paged responses
 // so it's easier to construct individual gatsby pages
 allPosts.forEach(x => {
   let titleText = x.node.title[0].text
