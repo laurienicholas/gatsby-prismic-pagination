@@ -1,8 +1,11 @@
 {
   "name": "gatsby-prismic-pagination",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A little help to get your gatsby-source-prismic-graphql based project paginating",
   "main": "./dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
   "repository": "https://github.com/laurienicholas/gatsby-prismic-pagination.git",
   "author": "Laurie Nicholas <laurienicholas@gmail.com>",
   "license": "MIT",
@@ -27,8 +30,14 @@
   },
   "scripts": {
     "build": "tsc",
+    "test": "jest ./src",
     "format": "prettier --write \"./src/*.{js,jsx,ts,tsx,json,md}\"",
-    "test": "jest ./src"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint",
+    "preversion": "yarn lint",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "prettier": {
     "arrowParens": "avoid",
@@ -37,5 +46,11 @@
   },
   "jest": {
     "preset": "jest-preset-typescript"
+  },
+  "tslint": {
+    "extends": [
+      "tslint:recommended",
+      "tslint-config-prettier"
+    ]
   }
 }

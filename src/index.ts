@@ -6,7 +6,7 @@ export const prismicPagination = async (args: {
   }
   nodeFields?: string[]
   component: string
-  graphql: (query: string) => Promise<graphQlResponse>
+  graphql: (query: string) => Promise<IGraphQlResponse>
   createPage: (args: {
     path: string
     component: string
@@ -19,7 +19,7 @@ export const prismicPagination = async (args: {
   const getNextResults = async (after: string | null = null) => {
     let connectionArgs = ''
     if (args.prismicConnectionArgs) {
-      for (let [key, value] of Object.entries(args.prismicConnectionArgs)) {
+      for (const [key, value] of Object.entries(args.prismicConnectionArgs)) {
         connectionArgs = connectionArgs + `${key}: ${value}, `
       }
     }
@@ -57,7 +57,7 @@ export const prismicPagination = async (args: {
     `
     return await args.graphql(query)
   }
-  let mostRecentResults: graphQlResponse
+  let mostRecentResults: IGraphQlResponse
   let shouldGetNextPage = true
   const allPosts = []
   const allPages = []
@@ -77,16 +77,16 @@ export const prismicPagination = async (args: {
   }
 
   for (let i = 0; i < allPages.length; i++) {
-    let page = allPages[i]
-    let previousPage = i > 0 ? allPages[i - 1] : null
-    let slug = `${args.pathPrefix}` + (i > 0 ? `/${i + 1}` : '')
+    const page = allPages[i]
+    const previousPage = i > 0 ? allPages[i - 1] : null
+    const path = `${args.pathPrefix}` + (i > 0 ? `/${i + 1}` : '')
     args.createPage({
-      path: slug,
+      path,
       component: args.component,
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
-        slug: slug,
+        path,
         first: args.postsPerPage,
         ...(previousPage && { after: previousPage.pageInfo.endCursor }),
         ...(page.pageInfo.hasNextPage && {
@@ -103,7 +103,7 @@ export const prismicPagination = async (args: {
   return { allPosts, allPages }
 }
 
-interface graphQlResponse {
+interface IGraphQlResponse {
   data: {
     prismic: {
       [connectionName: string]: {
