@@ -39,7 +39,9 @@ describe('Gatsby prismic pagination', () => {
                 },
               ],
               pageInfo: {
-                hasNextPage: (graphql as jest.MockedFunction<() => void>).mock.calls.length < 2,
+                hasNextPage:
+                  (graphql as jest.MockedFunction<() => void>).mock.calls
+                    .length < 2,
                 startCursor: '8fj4sppgkhn;',
                 endCursor: '66;][88***9-0854e',
                 hasPreviousPage: false,
