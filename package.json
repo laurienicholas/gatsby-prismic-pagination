@@ -1,6 +1,6 @@
 {
   "name": "gatsby-prismic-pagination",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A little help to get your gatsby-source-prismic-graphql based project paginating",
   "main": "./lib/index.js",
   "files": [
