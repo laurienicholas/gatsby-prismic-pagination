@@ -44,14 +44,14 @@ const { allPosts } = await prismicPagination(...yourArgsLikeBefore) // Still cre
 // so it's easier to construct individual gatsby pages
 allPosts.forEach(x => {
   let titleText = x.node.title[0].text
-  const path = yourFnToCreatePath(titleText) // Or maybe you want to use a UID?
+  const slug = yourFnToCreatePath(titleText) // Or maybe you want to use a UID?
   createPage({
-    path,
+    path: slug,
     component: path.resolve(`./src/components/SinglePrismicBlogPost.tsx`),
     context: {
       // Data passed to context is available
       // in page queries as GraphQL variables.
-      slug: path,
+      slug: slug,
       id: x.node._meta.id,
     },
   })
