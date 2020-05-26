@@ -7,7 +7,7 @@ Array [
     "context": Object {
       "first": 14,
       "nextPagePath": "/jibble-da-flibble/2",
-      "path": "/jibble-da-flibble",
+      "slug": "/jibble-da-flibble",
     },
     "path": "/jibble-da-flibble",
   },
