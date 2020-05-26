@@ -86,7 +86,7 @@ export const prismicPagination = async (args: {
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
-        path,
+        slug: path,
         first: args.postsPerPage,
         ...(previousPage && { after: previousPage.pageInfo.endCursor }),
         ...(page.pageInfo.hasNextPage && {
