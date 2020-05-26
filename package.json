@@ -4,7 +4,7 @@
   "description": "A little help to get your gatsby-source-prismic-graphql based project paginating",
   "main": "./dist/index.js",
   "files": [
-    "dist/**/*"
+    "lib/**/*"
   ],
   "repository": "https://github.com/laurienicholas/gatsby-prismic-pagination.git",
   "author": "Laurie Nicholas <laurienicholas@gmail.com>",
