@@ -62,7 +62,7 @@ describe('Gatsby prismic pagination', () => {
     prismicConnectionArgs = {
       sortBy: 'someField_DESC',
       id: '"wrizzle-ma-sizzle"',
-      stringArr: ["one", "two"],
+      stringArr: ['one', 'two'],
       numberArr: [1, 2],
     }
 

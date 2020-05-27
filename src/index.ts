@@ -21,7 +21,9 @@ export const prismicPagination = async (args: {
     let connectionArgs = ''
     if (args.prismicConnectionArgs) {
       for (const [key, value] of Object.entries(args.prismicConnectionArgs)) {
-        connectionArgs = connectionArgs + `${key}: ${Array.isArray(value) ? JSON.stringify(value) : value}, `
+        connectionArgs =
+          connectionArgs +
+          `${key}: ${Array.isArray(value) ? JSON.stringify(value) : value}, `
       }
     }
 
@@ -35,17 +37,23 @@ export const prismicPagination = async (args: {
             edges {
               node {
                 ${
-                  args.nodeFields ?
-                  args.nodeFields.map(
-                    x => `${x}
-                `) : ''}
+                  args.nodeFields
+                    ? args.nodeFields.map(
+                        x => `${x}
+                `
+                      )
+                    : ''
+                }
                 _meta {
                   id
                   ${
-                    args.nodeMeta ?
-                    args.nodeMeta.map(
-                      x => `${x}
-                  `) : ''}
+                    args.nodeMeta
+                      ? args.nodeMeta.map(
+                          x => `${x}
+                  `
+                        )
+                      : ''
+                  }
                 }
               }
             }
@@ -100,7 +108,7 @@ export const prismicPagination = async (args: {
           previousPagePath:
             i > 1 ? `${args.pathPrefix}/${i}` : `${args.pathPrefix}`,
         }),
-        ...args.prismicConnectionArgs
+        ...args.prismicConnectionArgs,
       },
     })
   }
