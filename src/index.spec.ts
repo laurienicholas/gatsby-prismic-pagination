@@ -8,6 +8,7 @@ describe('Gatsby prismic pagination', () => {
   let component
   let prismicConnectionName
   let nodeFields
+  let nodeMeta
   let prismicConnectionArgs
 
   beforeEach(async () => {
@@ -22,7 +23,7 @@ describe('Gatsby prismic pagination', () => {
                     title: [
                       { type: 'heading1', text: 'Some title', spans: [] },
                     ],
-                    _meta: { id: 'asdasdasd234' },
+                    _meta: { id: 'asdasdasd234', tags: ['one', 'two'] },
                   },
                 },
                 {
@@ -34,7 +35,7 @@ describe('Gatsby prismic pagination', () => {
                         spans: [],
                       },
                     ],
-                    _meta: { id: '98798asd' },
+                    _meta: { id: '98798asd', tags: ['one', 'two'] },
                   },
                 },
               ],
@@ -57,9 +58,12 @@ describe('Gatsby prismic pagination', () => {
     component = 'wibble-da-quibble'
     prismicConnectionName = 'allBig_kahoonas'
     nodeFields = ['beep', 'boop', 'sloop']
+    nodeMeta = ['tags']
     prismicConnectionArgs = {
       sortBy: 'someField_DESC',
-      id: 'wrizzle-ma-sizzle',
+      id: '"wrizzle-ma-sizzle"',
+      stringArr: ["one", "two"],
+      numberArr: [1, 2],
     }
 
     await prismicPagination({
@@ -70,6 +74,7 @@ describe('Gatsby prismic pagination', () => {
       component,
       prismicConnectionName,
       nodeFields,
+      nodeMeta,
       prismicConnectionArgs,
     })
   })

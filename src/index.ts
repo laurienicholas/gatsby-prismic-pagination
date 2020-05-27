@@ -2,9 +2,10 @@ export const prismicPagination = async (args: {
   prismicConnectionName: string
   postsPerPage: number
   prismicConnectionArgs?: {
-    [key: string]: string
+    [key: string]: string | string[] | number[] | number
   }
   nodeFields?: string[]
+  nodeMeta?: string[]
   component: string
   graphql: (query: string) => Promise<IGraphQlResponse>
   createPage: (args: {
@@ -20,28 +21,31 @@ export const prismicPagination = async (args: {
     let connectionArgs = ''
     if (args.prismicConnectionArgs) {
       for (const [key, value] of Object.entries(args.prismicConnectionArgs)) {
-        connectionArgs = connectionArgs + `${key}: ${value}, `
+        connectionArgs = connectionArgs + `${key}: ${Array.isArray(value) ? JSON.stringify(value) : value}, `
       }
     }
 
     const query = `
       query {
         prismic {
-          ${args.prismicConnectionName}(first: ${args.postsPerPage}, ${
+          ${args.prismicConnectionName}(first: ${args.postsPerPage}${
       after ? ', after: "' + after + '"' : ''
     }
-      ${args.prismicConnectionArgs ? connectionArgs : ''}) {
+      ${args.prismicConnectionArgs ? `, ${connectionArgs}` : ''}) {
             edges {
               node {
                 ${
-                  args.nodeFields &&
+                  args.nodeFields ?
                   args.nodeFields.map(
                     x => `${x}
-                `
-                  )
-                }
+                `) : ''}
                 _meta {
                   id
+                  ${
+                    args.nodeMeta ?
+                    args.nodeMeta.map(
+                      x => `${x}
+                  `) : ''}
                 }
               }
             }
@@ -96,6 +100,7 @@ export const prismicPagination = async (args: {
           previousPagePath:
             i > 1 ? `${args.pathPrefix}/${i}` : `${args.pathPrefix}`,
         }),
+        ...args.prismicConnectionArgs
       },
     })
   }

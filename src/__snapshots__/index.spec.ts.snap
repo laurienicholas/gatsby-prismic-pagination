@@ -6,8 +6,18 @@ Array [
     "component": "wibble-da-quibble",
     "context": Object {
       "first": 14,
+      "id": "\\"wrizzle-ma-sizzle\\"",
       "nextPagePath": "/jibble-da-flibble/2",
+      "numberArr": Array [
+        1,
+        2,
+      ],
       "slug": "/jibble-da-flibble",
+      "sortBy": "someField_DESC",
+      "stringArr": Array [
+        "one",
+        "two",
+      ],
     },
     "path": "/jibble-da-flibble",
   },
@@ -19,8 +29,8 @@ Array [
   "
       query {
         prismic {
-          allBig_kahoonas(first: 14, 
-      sortBy: someField_DESC, id: wrizzle-ma-sizzle, ) {
+          allBig_kahoonas(first: 14
+      , sortBy: someField_DESC, id: \\"wrizzle-ma-sizzle\\", stringArr: [\\"one\\",\\"two\\"], numberArr: [1,2], ) {
             edges {
               node {
                 beep
@@ -29,6 +39,8 @@ Array [
                 
                 _meta {
                   id
+                  tags
+                  
                 }
               }
             }

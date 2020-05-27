@@ -5,6 +5,7 @@ export declare const prismicPagination: (args: {
         [key: string]: string;
     } | undefined;
     nodeFields?: string[] | undefined;
+    nodeMeta?: string[] | undefined;
     component: string;
     graphql: (query: string) => Promise<IGraphQlResponse>;
     createPage: (args: {

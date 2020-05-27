@@ -29,6 +29,7 @@ exports.createPages = async ({ graphql, actions }) => {
       sortBy: 'date_DESC',
     },
     nodeFields: ['title'], // You might want to use from destructured return later...
+    nodeMeta: ['tags']
   })
 }
 ```
@@ -118,6 +119,20 @@ export const query = graphql`
   }
 `;
 ```
+
+## Types of `prismicConnectionArgs`
+
+You can provide enum, string and array values here:
+
+```js
+const prismicConnectionArgs: {
+  someEnumValue: 'date_DESC', // Enum value
+  someMatchingStringSelector: `"myString"`,
+  someArray: ["tag1", "tag2"]
+}
+```
+
+This will be provided back to your template in the `pageContext` which also makes them available in graphQl variables.
 
 ## Other pagination options
 
