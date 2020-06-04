@@ -79,13 +79,17 @@ export const prismicPagination = async (args: {
     mostRecentResults = await getNextResults(
       // @ts-ignore
       mostRecentResults &&
-        mostRecentResults.data.prismic[args.prismicConnectionName].pageInfo.endCursor
+        mostRecentResults.data.prismic[args.prismicConnectionName].pageInfo
+          .endCursor
     )
 
-    allPosts.push(...mostRecentResults.data.prismic[args.prismicConnectionName].edges)
+    allPosts.push(
+      ...mostRecentResults.data.prismic[args.prismicConnectionName].edges
+    )
     allPages.push(mostRecentResults.data.prismic[args.prismicConnectionName])
     shouldGetNextPage =
-      mostRecentResults.data.prismic[args.prismicConnectionName].pageInfo.hasNextPage
+      mostRecentResults.data.prismic[args.prismicConnectionName].pageInfo
+        .hasNextPage
   }
 
   for (let i = 0; i < allPages.length; i++) {
