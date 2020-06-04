@@ -2,7 +2,7 @@ export declare const prismicPagination: (args: {
     prismicConnectionName: string;
     postsPerPage: number;
     prismicConnectionArgs?: {
-        [key: string]: string;
+        [key: string]: string | number | string[] | number[];
     } | undefined;
     nodeFields?: string[] | undefined;
     nodeMeta?: string[] | undefined;
