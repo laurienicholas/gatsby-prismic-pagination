@@ -112,6 +112,7 @@ export const prismicPagination = async (args: {
           previousPagePath:
             i > 1 ? `${args.pathPrefix}/${i}` : `${args.pathPrefix}`,
         }),
+        currentPageNumber: i + 1,
         ...args.prismicConnectionArgs,
       },
     })
